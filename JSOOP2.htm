@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="icon" href="data:,">
+</head>
+<body>
+    <script src="jsoop.js"></script>
+    <script>  
+        "use strict"; //使用strict mode(嚴格模式)
+
+        /*
+        https://developer.mozilla.org/zh-TW/docs/Learn/JavaScript/Objects/Inheritance
+        */
+               
+        function TaiwanPerson(name) {
+            
+            this.ID = ''; 
+
+            // 若有使用 call 無法使用 TaiwanPerson.prototype.SayHelloTo override
+            //TaiwanPerson.prototype.SayHelloTo = function (name) {
+            //    console.log('TaiwanPerson say hello to' + name);
+            //};            
+            
+            //Person.call(this, name);                      // call base class constructor
+            Person.prototype.constructor.call(this, name);  // call base class constructor                   
+
+            var basesayhelloto = this.SayHelloTo;   // cache base function 
+
+            // override
+            this.SayHelloTo = function (name) {
+                console.log('TaiwanPerson say hello to' + name);
+                 basesayhelloto.call(this,name);
+            };
+        }      
+               
+        //TaiwanPerson.prototype = Object.create(Person.prototype); // 繼承
+        TaiwanPerson.prototype = new Person();                      // 繼承
+
+        // console 輸入
+        // TaiwanPerson.prototype.constructor
+        // 會發現 TaiwanPerson 變成 Person
+        //基於我們的繼承方式，TaiwanPerson() prototype 的建構子屬性目前設定為 Person()
+        //這樣可能會產生問題，所以要設定正確。你可回到自己的原始碼並在最下方加入下列程式
+        //TaiwanPerson.prototype.constructor 應該就會回傳 TaiwanPerson()
+        TaiwanPerson.prototype.constructor = TaiwanPerson;       
+
+        var taiwanperson = new TaiwanPerson('jon2');
+        var taiwanperson2 = new TaiwanPerson();
+
+        taiwanperson.setAge(28);
+        taiwanperson.ID = 'A1234456789';
+        taiwanperson.SayHelloTo('bbbb');
+
+        console.log(taiwanperson.getAge());
+        console.log(JSON.stringify(taiwanperson));
+        console.log(JSON.stringify(taiwanperson2));
+        
+    </script>
+</body>
+</html>

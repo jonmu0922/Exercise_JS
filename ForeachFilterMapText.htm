@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        /*
+        用filter篩選
+        用map傳回新的物件
+        */
+        var users = [];
+
+        users.push({ name: 'aaa', age: 18, gender: true });
+        users.push({ name: 'bbb', age: 25, gender: true });
+        users.push({ name: 'ccc', age: 30, gender: true });
+
+        //console.log(users.length);
+
+        users.forEach(function(obj,idx,arr){
+            //console.log(idx + ':' + JSON.stringify(obj) + ' arr:' + JSON.stringify(arr));
+        });
+
+        // filter age > 20 
+        users.filter(function(obj){
+            if(obj.age > 20)
+                return obj;
+        }).forEach(function(obj){
+            //console.log(JSON.stringify(obj));
+        });
+
+        // map return new array
+        var username = users.filter(function (obj) {
+                            if (obj.age > 20)
+                                return obj;
+                        }).map(function (obj) {
+                            return {newname:obj.name, newage:obj.age}
+                        });
+        
+        console.log(JSON.stringify(username));
+        
+        
+    </script>
+</body>
+</html>
