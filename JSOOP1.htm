@@ -18,9 +18,20 @@
         }
 
         person.SayHelloTo('aaaa');
+
+        // extend the Person function
+        Person.prototype.SayHelloTo2 = function(name) {
+            console.log('SayHelloTo2 to ' + name);
+        }
+
+        // call private function
         //person.Hello('aaaa');   //error person.Hello is not a function
+        
         person.setAge(19);
         console.log(person.getAge());
+
+        person.SayHelloTo2('bbbb');
+
     </script>
 </body>
 </html>
