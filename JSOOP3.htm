@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="icon" href="data:,">
+</head>
+<body>
+   
+    <script>  
+        "use strict"; //使用strict mode(嚴格模式)
+
+        function Person(config) {
+                this.name = config.name;
+                this.age = config.age;
+            }
+            Person.prototype.getAge = function () {
+                return this.age;
+            };
+            var tilo = new Person({ name: "Tilo", age: 23 });
+            console.log(tilo.age);
+            console.log(tilo.getAge());
+        
+    </script>
+</body>
+</html>
